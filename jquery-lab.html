@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkillPath internship assignment comparison.">
+  <title>SkillPath — jQuery Comparison</title>
+  <link rel="stylesheet" href="./styles.css">
+
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+    defer
+  ></script>
+
+  <script src="./js/jquery-lab.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Back to internship portal">
+      <span class="brand-mark">S</span>
+      <span>SkillPath <small>JQUERY VERSION</small></span>
+    </a>
+    <a class="nav-link" href="./">← Internship portal</a>
+  </header>
+
+  <main class="shell lab-shell">
+    <section class="welcome section-card">
+      <div>
+        <p class="eyebrow">INTERNSHIP WORKSPACE</p>
+        <h1>Assignment comparison</h1>
+        <p class="muted">The same assignment data, rendered with jQuery.</p>
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ASSIGNMENTS</p>
+          <h2>Training assignments</h2>
+        </div>
+        <span id="jqueryLoadStatus" class="muted" role="status">Loading…</span>
+      </div>
+
+      <div class="toolbar section-card">
+        <label class="search-control">
+          <span class="sr-only">Search assignments</span>
+          <span aria-hidden="true">⌕</span>
+          <input id="jquerySearch" type="search" placeholder="Search assignments…" autocomplete="off">
+        </label>
+        <label class="field-inline" for="jqueryStatusFilter">
+          Status
+          <select id="jqueryStatusFilter">
+            <option value="all">All statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </label>
+        <button id="jqueryClearFilters" class="secondary-button" type="button">Clear</button>
+        <button id="reloadWithAjax" class="primary-button" type="button">Reload</button>
+      </div>
+
+      <div id="jqueryAssignmentList" class="assignment-grid" aria-live="polite"></div>
+      <p id="jqueryAssignmentEmpty" class="empty-state" hidden>No matching assignments.</p>
+    </section>
+
+    <section class="lab-section section-card">
+      <p class="eyebrow">DOM PLAYGROUND</p>
+      <h2>Element controls</h2>
+
+      <div class="demo-box" id="jqueryDomDemo" data-demo="dom">
+        <h3 id="domTitle">Training workspace</h3>
+        <p class="demo-desc">Your profile details are ready.</p>
+        <input id="domInput" type="text" value="Profile name" aria-label="Demo text value">
+        <label><input id="domCheckbox" type="checkbox"> Active</label>
+
+        <div id="insertionZone" class="insertion-zone">
+          <span id="replaceTarget">Current status</span>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button id="runSelectors" class="secondary-button" type="button">Inspect elements</button>
+        <button id="runDomMethods" class="primary-button" type="button">Update elements</button>
+      </div>
+
+      <p id="selectorOutput" class="output-box" aria-live="polite">—</p>
+      <p id="domOutput" class="output-box" aria-live="polite">—</p>
+    </section>
+
+    <section class="lab-section section-card">
+      <p class="eyebrow">CARD INTERACTIONS</p>
+      <h2>Card actions</h2>
+
+      <div class="button-row">
+        <button id="runTraversal" class="secondary-button" type="button">Inspect card structure</button>
+        <button id="toggleDelegated" class="secondary-button" type="button">Disable card details</button>
+        <button id="oneTimeAction" class="secondary-button" type="button">One-time notice</button>
+      </div>
+
+      <p id="traversalOutput" class="output-box" aria-live="polite">—</p>
+      <p id="eventOutput" class="output-box" aria-live="polite">—</p>
+    </section>
+
+    <section class="lab-section section-card">
+      <p class="eyebrow">APPLICATION UPDATE</p>
+      <h2>Contact form</h2>
+
+      <form id="jqueryDemoForm" class="form-grid">
+        <label>
+          Name
+          <input name="name" id="jqueryName" type="text" required maxlength="80">
+        </label>
+        <label>
+          Email
+          <input name="email" id="jqueryEmail" type="email" required maxlength="120">
+        </label>
+        <label class="full-width">
+          Message
+          <textarea name="message" id="jqueryMessage" rows="3" required maxlength="500"></textarea>
+        </label>
+        <div class="full-width form-actions">
+          <button class="primary-button" type="submit">Prepare update</button>
+        </div>
+      </form>
+
+      <p id="formOutput" class="output-box" aria-live="polite">—</p>
+    </section>
+
+    <section class="lab-section section-card">
+      <p class="eyebrow">DATA REQUESTS</p>
+      <h2>Reload assignment data</h2>
+
+      <div class="button-row">
+        <button id="loadWithGet" class="secondary-button" type="button">GET</button>
+        <button id="loadWithGetJSON" class="secondary-button" type="button">GET JSON</button>
+        <button id="runAjax" class="primary-button" type="button">AJAX</button>
+        <button id="runPostExample" class="secondary-button" type="button">POST example</button>
+      </div>
+
+      <pre id="postExample" class="code-example" hidden><code>$.post("/api/assignments", { title: "New assignment" })
+  .done((response) =&gt; handleSuccess(response))
+  .fail((xhr) =&gt; handleError(xhr.status));</code></pre>
+
+      <p id="ajaxOutput" class="output-box" aria-live="polite">—</p>
+    </section>
+
+    <section class="lab-section section-card">
+      <p class="eyebrow">INTERFACE FEEDBACK</p>
+      <h2>Panel controls</h2>
+
+      <div id="effectsBox" class="effects-box">
+        Your selected panel is ready.
+      </div>
+
+      <div class="button-row">
+        <button id="effectShow" class="secondary-button" type="button">Show</button>
+        <button id="effectHide" class="secondary-button" type="button">Hide</button>
+        <button id="effectToggle" class="secondary-button" type="button">Toggle</button>
+        <button id="effectFade" class="secondary-button" type="button">Fade</button>
+        <button id="effectSlide" class="secondary-button" type="button">Slide</button>
+        <button id="effectAnimate" class="secondary-button" type="button">Animate</button>
+      </div>
+    </section>
+
+    <!-- Functional migration comparison -->
+    <section class="lab-section section-card" aria-labelledby="migrationTitle">
+      <p class="eyebrow">CODE COMPARISON</p>
+      <h2 id="migrationTitle">Save profile action</h2>
+
+      <p class="muted small">
+        Both implementations perform the same action using different JavaScript APIs.
+      </p>
+
+      <div class="code-columns">
+        <div>
+          <h3>jQuery</h3>
+          <pre class="code-example"><code>$("#jquerySaveDemo").on("click", function () {
+  $("#migrationMessage").text("Saved with jQuery.");
+});</code></pre>
+
+          <button
+            id="jquerySaveDemo"
+            class="secondary-button"
+            type="button"
+          >
+            Run jQuery version
+          </button>
+        </div>
+
+        <div>
+          <h3>Vanilla JavaScript</h3>
+          <pre class="code-example"><code>document.querySelector("#vanillaSaveDemo")
+  .addEventListener("click", () =&gt; {
+    document.querySelector("#migrationMessage").textContent = "Saved with Vanilla JS.";
+  });</code></pre>
+
+          <button
+            id="vanillaSaveDemo"
+            class="primary-button"
+            type="button"
+          >
+            Run Vanilla version
+          </button>
+        </div>
+      </div>
+
+      <p id="migrationMessage" class="output-box" aria-live="polite">
+        Choose an implementation to compare the result.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <span>SkillPath Internship Portal</span>
+      <span><a href="./">Back to Vanilla version</a></span>
+    </footer>
+  </main>
+
+  <div id="jqueryToast" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

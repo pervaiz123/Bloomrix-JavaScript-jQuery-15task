@@ -1,0 +1,98 @@
+{
+  "profile": {
+    "name": "Alex Morgan",
+    "role": "Software Engineering Intern",
+    "email": "alex@example.com",
+    "programme": "Frontend Development Training",
+    "applicationId": "SP-INT-2026-015"
+  },
+  "application": {
+    "status": "Under Review",
+    "nextStep": "Your application is being reviewed. Check notifications for updates."
+  },
+  "notifications": [
+    {
+      "id": "N-201",
+      "title": "Assignment submitted",
+      "message": "Your previous JavaScript assignment has been recorded.",
+      "date": "2026-11-10",
+      "read": false
+    },
+    {
+      "id": "N-202",
+      "title": "New assignment available",
+      "message": "The jQuery and Vanilla JavaScript comparison task is ready.",
+      "date": "2026-11-12",
+      "read": false
+    },
+    {
+      "id": "N-203",
+      "title": "Profile reminder",
+      "message": "Review your profile and application contact details.",
+      "date": "2026-11-09",
+      "read": true
+    }
+  ],
+  "assignments": [
+    {
+      "id": "A-101",
+      "title": "Semantic HTML and Responsive CSS",
+      "description": "Create an accessible page structure and responsive layouts using semantic HTML, Flexbox and Grid.",
+      "status": "Completed",
+      "dueDate": "2026-11-03",
+      "progress": 100,
+      "category": "Frontend",
+      "estimatedHours": 5
+    },
+    {
+      "id": "A-102",
+      "title": "Modern JavaScript Fundamentals",
+      "description": "Practise ES modules, functions, array methods, events and safe DOM rendering.",
+      "status": "Completed",
+      "dueDate": "2026-11-07",
+      "progress": 100,
+      "category": "JavaScript",
+      "estimatedHours": 6
+    },
+    {
+      "id": "A-103",
+      "title": "Training Course API Page",
+      "description": "Load JSON with fetch and implement search, filtering, sorting and asynchronous UI states.",
+      "status": "In Progress",
+      "dueDate": "2026-11-14",
+      "progress": 75,
+      "category": "JavaScript",
+      "estimatedHours": 8
+    },
+    {
+      "id": "A-104",
+      "title": "Browser APIs Internship Dashboard",
+      "description": "Use storage, FormData, URL APIs, observers, file input and event delegation in a dashboard.",
+      "status": "In Progress",
+      "dueDate": "2026-11-18",
+      "progress": 45,
+      "category": "Browser APIs",
+      "estimatedHours": 8
+    },
+    {
+      "id": "A-105",
+      "title": "jQuery and Vanilla JavaScript Comparison",
+      "description": "Build equivalent selected features and compare selectors, events, traversal, AJAX and effects.",
+      "status": "Pending",
+      "dueDate": "2026-11-22",
+      "progress": 0,
+      "category": "JavaScript",
+      "estimatedHours": 7
+    },
+    {
+      "id": "A-106",
+      "title": "Internship Portfolio Review",
+      "description": "Review project quality, document completed work and prepare a short project walkthrough.",
+      "status": "Pending",
+      "dueDate": "2026-11-29",
+      "progress": 0,
+      "category": "Career",
+      "estimatedHours": 4
+    }
+  ]
+}

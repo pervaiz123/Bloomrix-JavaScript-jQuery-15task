@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A small internship portal built with Vanilla JavaScript.">
+  <title>SkillPath — Internship Portal</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="SkillPath home">
+      <span class="brand-mark">S</span>
+      <span>SkillPath <small>INTERNSHIP PORTAL</small></span>
+    </a>
+    <div class="top-actions">
+      <span id="connectionStatus" class="muted">Checking connection…</span>
+      <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle theme">☀️</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="welcome section-card">
+      <div>
+        <p class="eyebrow">YOUR TRAINING WORKSPACE</p>
+        <h1>Internship dashboard</h1>
+        <p class="muted">Assignments, application updates and notifications in one place.</p>
+      </div>
+      <div class="welcome-status">
+        <span class="status-dot"></span>
+        <span id="applicationStatusSummary">Loading status…</span>
+      </div>
+    </section>
+
+    <nav class="nav-tabs" aria-label="Portal navigation">
+      <button class="nav-tab active" type="button" data-section="profile">Profile</button>
+      <button class="nav-tab" type="button" data-section="assignments">Assignments</button>
+      <button class="nav-tab" type="button" data-section="application">Application</button>
+      <button class="nav-tab" type="button" data-section="notifications">
+        Notifications <span id="unreadCount" class="count-badge">0</span>
+      </button>
+      <a class="nav-link" href="./jquery-lab.html">jQuery comparison →</a>
+    </nav>
+
+    <div id="loadError" class="notice notice-error" role="alert" hidden>
+      <span id="loadErrorText">Could not load portal data.</span>
+      <button id="retryLoad" class="text-button" type="button">Retry</button>
+    </div>
+
+    <section class="portal-section" data-section-panel="profile">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR DETAILS</p>
+          <h2>Profile</h2>
+        </div>
+      </div>
+
+      <article class="section-card profile-card">
+        <div class="avatar" id="profileInitials">SP</div>
+
+        <div>
+          <h3 id="profileName">Loading profile…</h3>
+          <p id="profileRole" class="muted">—</p>
+        </div>
+
+        <dl class="profile-details">
+          <div>
+            <dt>Email</dt>
+            <dd id="profileEmail">—</dd>
+          </div>
+          <div>
+            <dt>Training programme</dt>
+            <dd id="profileProgramme">—</dd>
+          </div>
+          <div>
+            <dt>Application ID</dt>
+            <dd id="profileApplicationId">—</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="portal-section" data-section-panel="assignments" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR TRAINING WORK</p>
+          <h2>Assignments</h2>
+        </div>
+        <span id="assignmentCount" class="muted">Loading…</span>
+      </div>
+
+      <div class="toolbar section-card">
+        <label class="search-control">
+          <span class="sr-only">Search assignments</span>
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="assignmentSearch"
+            type="search"
+            placeholder="Search assignments…"
+            autocomplete="off"
+          >
+        </label>
+
+        <label class="field-inline" for="statusFilter">
+          Status
+          <select id="statusFilter">
+            <option value="all">All statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </label>
+
+        <button id="clearFilters" class="secondary-button" type="button">Clear</button>
+      </div>
+
+      <div id="assignmentList" class="assignment-grid" aria-live="polite"></div>
+
+      <p id="assignmentEmpty" class="empty-state" hidden>
+        No assignments match your search.
+      </p>
+    </section>
+
+    <section class="portal-section" data-section-panel="application" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR APPLICATION</p>
+          <h2>Application form</h2>
+        </div>
+      </div>
+
+      <article class="section-card application-card">
+        <div class="application-summary">
+          <span class="muted">Current status</span>
+          <strong id="applicationStatus">—</strong>
+          <p id="applicationNextStep" class="muted">—</p>
+        </div>
+
+        <form id="applicationForm" class="form-grid">
+          <label>
+            Full name
+            <input name="fullName" id="fullName" type="text" maxlength="80" required>
+          </label>
+
+          <label>
+            Email address
+            <input name="email" id="email" type="email" maxlength="120" required>
+          </label>
+
+          <label class="full-width">
+            Message
+            <textarea
+              name="message"
+              id="message"
+              rows="4"
+              maxlength="500"
+              required
+              placeholder="Write a short application update…"
+            ></textarea>
+          </label>
+
+          <p class="full-width muted small">
+            This is a frontend demonstration. FormData is collected and validated locally; nothing is sent to a server.
+          </p>
+
+          <div class="full-width form-actions">
+            <button class="primary-button" type="submit">Prepare update</button>
+            <span id="formFeedback" class="muted small" aria-live="polite"></span>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section class="portal-section" data-section-panel="notifications" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">STAY INFORMED</p>
+          <h2>Notifications</h2>
+        </div>
+        <button id="markAllRead" class="text-button" type="button">Mark all as read</button>
+      </div>
+
+      <div id="notificationList" class="notification-list" aria-live="polite"></div>
+
+      <p id="notificationEmpty" class="empty-state" hidden>
+        No notifications available.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <span>SkillPath Internship Portal</span>
+      <span>Vanilla JavaScript first · jQuery comparison separately</span>
+    </footer>
+  </main>
+
+  <dialog id="assignmentDialog" class="modal" aria-labelledby="modalTitle">
+    <div id="modalContent"></div>
+    <button id="closeModal" class="secondary-button" type="button">Close</button>
+  </dialog>
+
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
